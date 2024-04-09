@@ -32,9 +32,10 @@ class ListBullet extends AbstractTag {
         const index = this.quillJS.getIndex(line)
 
         setTimeout(() => {
-          let offsetText = /^\s{0,9}(\*){1}\s/.test(text) ? text.replace('*', '-') : text
-          const depth = offsetText.split('- ')[0].split('').filter(e => /\s/gi.test(e)).length
-          const replaceText = text.replace(/^\s*- /, "");
+          const offsetText= text.replace(/^(\s*)\* /, '$1- ');
+          const depth = offsetText.split('-')[0].length
+          const replaceText = offsetText.replace(/^\s*- /, "");
+
           this.quillJS.insertText(index, replaceText)
           this.quillJS.deleteText(index + replaceText.length - 1, text.length)
           setTimeout(() => {
