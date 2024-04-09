@@ -1,7 +1,7 @@
 import AbstractTag from '../AbstractTag.js'
 import meta from './meta.js'
 
-class Link extends AbstractTag {
+class ListBullet extends AbstractTag {
   constructor (quillJS, options = {}) {
     super()
     this.quillJS = quillJS
@@ -47,4 +47,4 @@ class Link extends AbstractTag {
   }
 }
 
-export default Link
+export default ListBullet

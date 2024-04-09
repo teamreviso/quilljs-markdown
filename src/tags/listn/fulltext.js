@@ -1,7 +1,7 @@
 import AbstractTag from '../AbstractTag.js'
 import meta from './meta.js'
 
-class Link extends AbstractTag {
+class ListNumbered extends AbstractTag {
   constructor (quillJS, options = {}) {
     super()
     this.quillJS = quillJS
@@ -26,7 +26,8 @@ class Link extends AbstractTag {
         const index = this.quillJS.getIndex(line)
         setTimeout(() => {
           const depth = text.split('. ')[0].split('').filter(e => /\s/gi.test(e)).length
-          const replaceText = text.split('. ').splice(1, 1).join('')
+          const replaceText = text.replace(/^\s*\d+\. /, "");
+
           this.quillJS.insertText(index, replaceText)
           this.quillJS.deleteText(index + replaceText.length - 1, text.length)
           setTimeout(() => {
@@ -39,4 +40,4 @@ class Link extends AbstractTag {
   }
 }
 
-export default Link
+export default ListNumbered
