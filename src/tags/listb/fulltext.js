@@ -34,7 +34,7 @@ class ListBullet extends AbstractTag {
         setTimeout(() => {
           let offsetText = /^\s{0,9}(\*){1}\s/.test(text) ? text.replace('*', '-') : text
           const depth = offsetText.split('- ')[0].split('').filter(e => /\s/gi.test(e)).length
-          let replaceText = offsetText.split('- ').length > 1 ? offsetText.split('- ').splice(1, 1).join('') : offsetText
+          const replaceText = text.replace(/^\s*- /, "");
           this.quillJS.insertText(index, replaceText)
           this.quillJS.deleteText(index + replaceText.length - 1, text.length)
           setTimeout(() => {
